@@ -4,6 +4,9 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
+SECRET_PASSWORD = "admin123456"
+API_KEY = "my-hardcoded-secret-key"
+
 @app.route("/")
 def home():
     return "Backend is running"
