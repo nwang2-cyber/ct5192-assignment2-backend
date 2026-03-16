@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -26,3 +28,13 @@ jobs:
 
       - name: Check Python version
         run: python --version
+
+      - name: SonarQube Cloud Scan
+        uses: SonarSource/sonarqube-scan-action@v5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.organization=nwang2-cyber
+            -Dsonar.projectKey=nwang2-cyber_ct5192-assignment2-backend
+            -Dsonar.sources=.
